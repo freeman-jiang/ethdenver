@@ -1,31 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
+import { Streamer } from './Streamer.sol';
+
 contract Controller {
 
-    Stream[] listOfStreams;
+    address[] streamers;
 
-    //create mapping with all the stream addresses
+    event newStream(address streamAddress, address token, address receiver, int96 flowRate);
 
-    struct Stream {
-        address token;
-        // address contract;
-        // flow rate;
-        // time;
-    }
+    function createNewStream (address _receiver, address _token, int96 flowRate) public {
+        
+        address streamer = new Streamer(host, _receiver, _token, _flowRate);
+        
+        streamers.push(streamer);
 
-    // event newStream(address streamAddress, address streamToken );
-
-    function createNewStream (address _token) public {
-        Stream memory newStream;
-
-        newStream.token = _token;
-
-        listOfStreams.push(newStream);
-
-        // add new stream address to mapping
-
-        // emit newStream(_token)
+        emit newStream(streamer, _token, receiver, flowRate);
 
     }
 

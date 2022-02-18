@@ -36,7 +36,7 @@ contract Streamer is Ownable {
     //initialize cfaV1 variable
     CFAv1Library.InitData public cfaV1;
     
-    constructor(ISuperfluid host, address receiver, address _token, int96 flowRate) {
+    constructor(ISuperfluid host, address _receiver, address _token, int96 _flowRate) {
     
         //initialize InitData struct, and set equal to cfaV1
         cfaV1 = CFAv1Library.InitData(
@@ -53,7 +53,11 @@ contract Streamer is Ownable {
 
         receiver = _receiver;
 
-        cfaV1.createFlow(_receiver, _token, flowRate);
+        flowRate = _flowRate;
+
+        token = _token;
+
+        cfaV1.createFlow(_receiver, _token, _flowRate);
     }
 
     function withdraw () public {
