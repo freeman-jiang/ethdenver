@@ -1,0 +1,16 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ControllerFactory",
+  "sourceName": "contracts/interfaces/ControllerFactory.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220c28bf30984ed48677d170400e78b58040bc73e6e5acf781fc229001f11da207f64736f6c63430008000033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220c28bf30984ed48677d170400e78b58040bc73e6e5acf781fc229001f11da207f64736f6c63430008000033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

@@ -1,21 +1,25 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.7.0;
 
 import { Streamer } from './Streamer.sol';
 
-contract Controller {
+import { ISuperfluid } from "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";  
 
-    address[] streamers;
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-    event newStream(address streamAddress, address token, address receiver, int96 flowRate);
+contract Controller is Ownable {
 
-    function createNewStream (address _receiver, address _token, int96 flowRate) public {
+    Streamer[] streamers;
+
+    event newStream(address streamAddress, address token, address receiver);
+
+    function createNewStream(ISuperfluid host, address _receiver, address _token) public onlyOwner {
         
-        address streamer = new Streamer(host, _receiver, _token, _flowRate);
+        Streamer streamer = new Streamer(host, _receiver, _token);
         
         streamers.push(streamer);
 
-        emit newStream(streamer, _token, receiver, flowRate);
+        emit newStream(address(streamer), _token, _receiver);
 
     }
 
