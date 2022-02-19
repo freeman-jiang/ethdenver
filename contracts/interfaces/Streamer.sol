@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0;
 
-import "hardhat/console.sol";
-
 import {
     CFAv1Library
 } from "@superfluid-finance/ethereum-contracts/contracts/apps/CFAv1Library.sol";
@@ -78,21 +76,33 @@ contract Streamer is Ownable {
     }
 
     function getStreamerETA() external view returns(uint256) {
-
         return token.balanceOf(address(this)) / uint96(flowRate);
+    }
+
+    function openStream (address _receiver, address _token, int96 _flowRate) public onlyOwner {
+
+    }
+
+    function approve(uint256 _amount) public {
+        token.approve(msg.sender, _amount);
     }
     
     function deposit(uint256 _amount, int96 _flowRate) public onlyOwner {
+        token.approve(msg.sender, _amount);
         bool success = token.transferFrom(msg.sender, address(this), _amount);
         require(success, "Token transfer failed.");
         flowRate = _flowRate;
-         cfaV1.createFlow(receiver, token, flowRate);
+        cfaV1.createFlow(receiver, token, flowRate);
     }
 
     function withdraw(uint256 _amount) public {
         require(token.balanceOf(address(this)) >= _amount, "Insufficient funds.");
         bool success = token.transfer(msg.sender, _amount);
         require(success, "Token transfer failed.");
+    }
+
+    function getBalance() external view returns(uint256 balance) {
+        return token.balanceOf(address(this));
     }
 
 }

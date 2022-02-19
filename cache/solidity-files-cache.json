@@ -1,8 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/freeman/Development/Web3/ethdenver/contracts/interfaces/Controller.sol": {
-      "lastModificationDate": 1645237510644,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\contracts\\interfaces\\Controller.sol": {
+      "lastModificationDate": 1645237625199,
       "contentHash": "32c18715da8371a33336fd17b66522cf",
       "sourceName": "contracts/interfaces/Controller.sol",
       "solcConfig": {
@@ -40,9 +40,9 @@
         "Controller"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/contracts/interfaces/Streamer.sol": {
-      "lastModificationDate": 1645237463270,
-      "contentHash": "49a0b3784fde849b0fd6f27acafabcb0",
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\contracts\\interfaces\\Streamer.sol": {
+      "lastModificationDate": 1645247773273,
+      "contentHash": "49cb298603c97f50ae2aaff1a0050cd6",
       "sourceName": "contracts/interfaces/Streamer.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -68,7 +68,6 @@
         }
       },
       "imports": [
-        "hardhat/console.sol",
         "@superfluid-finance/ethereum-contracts/contracts/apps/CFAv1Library.sol",
         "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol",
         "@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol",
@@ -81,8 +80,8 @@
         "Streamer"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol": {
-      "lastModificationDate": 1645222442998,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\superfluid\\ISuperfluid.sol": {
+      "lastModificationDate": 1645221136621,
       "contentHash": "12a0e8c955e1b980093b9eca1485ad21",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol",
       "solcConfig": {
@@ -127,8 +126,8 @@
         "ISuperfluid"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-      "lastModificationDate": 1645222442420,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1645221053942,
       "contentHash": "8398972af73b4e9e5ff3b31cad86234f",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -164,8 +163,43 @@
         "Ownable"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/apps/CFAv1Library.sol": {
-      "lastModificationDate": 1645226962249,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1645221040193,
+      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    },
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\apps\\CFAv1Library.sol": {
+      "lastModificationDate": 1645239096515,
       "contentHash": "4c8db644b63de23e854680506f6041f5",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/apps/CFAv1Library.sol",
       "solcConfig": {
@@ -202,8 +236,8 @@
         "CFAv1Library"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol": {
-      "lastModificationDate": 1645222442996,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\agreements\\IConstantFlowAgreementV1.sol": {
+      "lastModificationDate": 1645221136601,
       "contentHash": "96a355e597b229360d92048aaf450bf9",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol",
       "solcConfig": {
@@ -240,8 +274,8 @@
         "IConstantFlowAgreementV1"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidGovernance.sol": {
-      "lastModificationDate": 1645222442996,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\superfluid\\ISuperfluidGovernance.sol": {
+      "lastModificationDate": 1645221136623,
       "contentHash": "0458c170575b4621fbc9c8fb91ec7880",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidGovernance.sol",
       "solcConfig": {
@@ -280,8 +314,8 @@
         "ISuperfluidGovernance"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidToken.sol": {
-      "lastModificationDate": 1645222442996,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\superfluid\\ISuperfluidToken.sol": {
+      "lastModificationDate": 1645221136624,
       "contentHash": "ab1ebc34aab01b35731c0935f56c643b",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidToken.sol",
       "solcConfig": {
@@ -317,8 +351,8 @@
         "ISuperfluidToken"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperToken.sol": {
-      "lastModificationDate": 1645222442996,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\superfluid\\ISuperToken.sol": {
+      "lastModificationDate": 1645221136626,
       "contentHash": "222314b322e51d2090b3877c60b263b7",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperToken.sol",
       "solcConfig": {
@@ -358,8 +392,8 @@
         "ISuperToken"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperTokenFactory.sol": {
-      "lastModificationDate": 1645222442996,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\superfluid\\ISuperTokenFactory.sol": {
+      "lastModificationDate": 1645221136628,
       "contentHash": "6e016499dc288027c11cb79bf0a4f99c",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperTokenFactory.sol",
       "solcConfig": {
@@ -396,8 +430,8 @@
         "ISuperTokenFactory"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperAgreement.sol": {
-      "lastModificationDate": 1645222442996,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\superfluid\\ISuperAgreement.sol": {
+      "lastModificationDate": 1645221136618,
       "contentHash": "b97fa63ef5ffd33cb83c453a2d3a4aa5",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperAgreement.sol",
       "solcConfig": {
@@ -433,8 +467,8 @@
         "ISuperAgreement"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperApp.sol": {
-      "lastModificationDate": 1645222442996,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\superfluid\\ISuperApp.sol": {
+      "lastModificationDate": 1645221136618,
       "contentHash": "4a7ab4f66d3c1f0928f175b31dfa5b0a",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperApp.sol",
       "solcConfig": {
@@ -470,8 +504,8 @@
         "ISuperApp"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/Definitions.sol": {
-      "lastModificationDate": 1645222442996,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\superfluid\\Definitions.sol": {
+      "lastModificationDate": 1645221136594,
       "contentHash": "997d20f7cfa834892930bf1459c9e797",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/Definitions.sol",
       "solcConfig": {
@@ -508,8 +542,8 @@
         "SuperfluidGovernanceConfigs"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/tokens/TokenInfo.sol": {
-      "lastModificationDate": 1645222442997,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\tokens\\TokenInfo.sol": {
+      "lastModificationDate": 1645221136652,
       "contentHash": "f1077db92299ae9ec32a5f18d174c0a5",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/tokens/TokenInfo.sol",
       "solcConfig": {
@@ -543,8 +577,8 @@
         "TokenInfo"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1645222442763,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
+      "lastModificationDate": 1645221053914,
       "contentHash": "a44d1a099633876550ad2476b21bafbe",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -578,8 +612,8 @@
         "IERC20"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@openzeppelin/contracts/token/ERC777/IERC777.sol": {
-      "lastModificationDate": 1645222442757,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@openzeppelin\\contracts\\token\\ERC777\\IERC777.sol": {
+      "lastModificationDate": 1645221053922,
       "contentHash": "577d03e8d175b2f807063648ac4302ad",
       "sourceName": "@openzeppelin/contracts/token/ERC777/IERC777.sol",
       "solcConfig": {
@@ -613,8 +647,8 @@
         "IERC777"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@superfluid-finance/ethereum-contracts/contracts/interfaces/tokens/ERC20WithTokenInfo.sol": {
-      "lastModificationDate": 1645222442997,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@superfluid-finance\\ethereum-contracts\\contracts\\interfaces\\tokens\\ERC20WithTokenInfo.sol": {
+      "lastModificationDate": 1645221136595,
       "contentHash": "022e0091ad1481b6f1c0f7b2c4bb3473",
       "sourceName": "@superfluid-finance/ethereum-contracts/contracts/interfaces/tokens/ERC20WithTokenInfo.sol",
       "solcConfig": {
@@ -651,8 +685,8 @@
         "ERC20WithTokenInfo"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1645222442430,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1645221053699,
       "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -686,8 +720,8 @@
         "Context"
       ]
     },
-    "/Users/freeman/Development/Web3/ethdenver/contracts/interfaces/ControllerFactory.sol": {
-      "lastModificationDate": 1645226906184,
+    "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\contracts\\interfaces\\ControllerFactory.sol": {
+      "lastModificationDate": 1645237625207,
       "contentHash": "e75e731706be9cd0a127bac4dc9fb83f",
       "sourceName": "contracts/interfaces/ControllerFactory.sol",
       "solcConfig": {
@@ -719,41 +753,6 @@
       ],
       "artifacts": [
         "ControllerFactory"
-      ]
-    },
-    "/Users/freeman/Development/Web3/ethdenver/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1645220493024,
-      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
-      "sourceName": "hardhat/console.sol",
-      "solcConfig": {
-        "version": "0.8.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.22 <0.9.0"
-      ],
-      "artifacts": [
-        "console"
       ]
     }
   }
