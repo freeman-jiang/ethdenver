@@ -30,10 +30,10 @@ import {
 contract Streamer {
 
     // Global Variables:
-    int96 flowRate; // Flow rate in wei per second
-    ISuperToken token; // Address of the ERC20-compliant token
-    address receiver;  // Address of the receiver
-    address owner;
+    int96 public flowRate; // Flow rate in wei per second
+    ISuperToken public token; // Address of the ERC20-compliant token
+    address public receiver;  // Address of the receiver
+    address public owner;
 
     modifier onlyOwner {
         require(msg.sender == owner);
