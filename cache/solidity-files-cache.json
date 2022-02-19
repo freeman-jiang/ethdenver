@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\contracts\\interfaces\\Controller.sol": {
-      "lastModificationDate": 1645237625199,
-      "contentHash": "32c18715da8371a33336fd17b66522cf",
+      "lastModificationDate": 1645289700120,
+      "contentHash": "477c1c9d459ca6d0e756c1c5119b163a",
       "sourceName": "contracts/interfaces/Controller.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -30,8 +30,7 @@
       },
       "imports": [
         "./Streamer.sol",
-        "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol",
-        "@openzeppelin/contracts/access/Ownable.sol"
+        "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol"
       ],
       "versionPragmas": [
         ">=0.7.0"
@@ -41,8 +40,8 @@
       ]
     },
     "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\contracts\\interfaces\\Streamer.sol": {
-      "lastModificationDate": 1645247773273,
-      "contentHash": "49cb298603c97f50ae2aaff1a0050cd6",
+      "lastModificationDate": 1645289460732,
+      "contentHash": "2a0ed2e64874994dace6301a43dc4b0c",
       "sourceName": "contracts/interfaces/Streamer.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -70,8 +69,7 @@
       "imports": [
         "@superfluid-finance/ethereum-contracts/contracts/apps/CFAv1Library.sol",
         "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol",
-        "@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol",
-        "@openzeppelin/contracts/access/Ownable.sol"
+        "@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol"
       ],
       "versionPragmas": [
         ">=0.7.0"
@@ -721,8 +719,8 @@
       ]
     },
     "C:\\Users\\cesar\\Documents\\GitHub\\ethdenver\\contracts\\interfaces\\ControllerFactory.sol": {
-      "lastModificationDate": 1645237625207,
-      "contentHash": "e75e731706be9cd0a127bac4dc9fb83f",
+      "lastModificationDate": 1645289723058,
+      "contentHash": "0bead7ab94ff520d0b3e9a8646761c05",
       "sourceName": "contracts/interfaces/ControllerFactory.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -747,7 +745,9 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "./Controller.sol"
+      ],
       "versionPragmas": [
         ">=0.7.0"
       ],

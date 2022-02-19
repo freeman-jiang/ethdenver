@@ -12,14 +12,10 @@ const amount = 500000000;
 
 async function main() {
   // We get the contract to deploy
-  const Streamer = await hre.ethers.getContractFactory("Streamer");
-  const streamerContract = await Streamer.deploy(
-    superfluidHost,
-    receiverAddress,
-    tokenAddress
-  );
+  const ControllerFactory = await hre.ethers.getContractFactory("ControllerFactory");
+  const controllerFactoryContract = await ControllerFactory.deploy();
 
-  console.log("Streamer deployed to:", streamerContract.address);
+  console.log("Factory deployed to:", controllerFactoryContract.address);
 }
 
 main()

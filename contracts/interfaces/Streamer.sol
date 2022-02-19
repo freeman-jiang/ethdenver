@@ -46,10 +46,8 @@ contract Streamer {
     //initialize cfaV1 variable
     CFAv1Library.InitData public cfaV1;
     
-    constructor(ISuperfluid host, address _receiver, address _token) {
+    constructor(ISuperfluid host, address _receiver, address _token, address _owner) {
 
-        owner = msg.sender;
-    
         //initialize InitData struct, and set equal to cfaV1
         cfaV1 = CFAv1Library.InitData(
             host,
@@ -63,6 +61,7 @@ contract Streamer {
 
         receiver = _receiver;
         token = ISuperToken(_token);
+        owner = _owner;
 
     }
 
@@ -102,11 +101,7 @@ contract Streamer {
         return token.balanceOf(address(this));
     }
 
-    function readAllowance (address account) external view returns(uint256 allowance) {
-        return token.allowance(account, address(this));
-    }
-
-    function getConfig() external view returns(int96 _flowRate, ISuperToken _token, address _receiver, uint256 allowance) {
+    function getVariables() external view returns(int96 _flowRate, ISuperToken _token, address _receiver, uint256 allowance) {
         return (flowRate, token, receiver, token.allowance(msg.sender, address(this)));
     }
 
