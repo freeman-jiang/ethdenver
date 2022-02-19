@@ -18,8 +18,6 @@ import {
     IConstantFlowAgreementV1
 } from "@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol";
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-
 // interface IStreamer is Ownable {
 //     function deposit() public payable;        
 //     function withdraw() public;
@@ -29,13 +27,18 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 // }
 
 
-contract Streamer is Ownable {
+contract Streamer {
 
     // Global Variables:
     int96 flowRate; // Flow rate in wei per second
     ISuperToken token; // Address of the ERC20-compliant token
     address receiver;  // Address of the receiver
+    address owner;
 
+    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
 
     /** SUPERFLUID BOILERPLATE */
     using CFAv1Library for CFAv1Library.InitData;
@@ -44,6 +47,8 @@ contract Streamer is Ownable {
     CFAv1Library.InitData public cfaV1;
     
     constructor(ISuperfluid host, address _receiver, address _token) {
+
+        owner = msg.sender;
     
         //initialize InitData struct, and set equal to cfaV1
         cfaV1 = CFAv1Library.InitData(
@@ -78,17 +83,9 @@ contract Streamer is Ownable {
     function getStreamerETA() external view returns(uint256) {
         return token.balanceOf(address(this)) / uint96(flowRate);
     }
-
-    function openStream (address _receiver, address _token, int96 _flowRate) public onlyOwner {
-
-    }
-
-    function approve(uint256 _amount) public {
-        token.approve(msg.sender, _amount);
-    }
     
     function deposit(uint256 _amount, int96 _flowRate) public onlyOwner {
-        token.approve(msg.sender, _amount);
+        token.approve(address(this), _amount);
         bool success = token.transferFrom(msg.sender, address(this), _amount);
         require(success, "Token transfer failed.");
         flowRate = _flowRate;
@@ -103,6 +100,14 @@ contract Streamer is Ownable {
 
     function getBalance() external view returns(uint256 balance) {
         return token.balanceOf(address(this));
+    }
+
+    function readAllowance (address account) external view returns(uint256 allowance) {
+        return token.allowance(account, address(this));
+    }
+
+    function getConfig() external view returns(int96 _flowRate, ISuperToken _token, address _receiver, uint256 allowance) {
+        return (flowRate, token, receiver, token.allowance(msg.sender, address(this)));
     }
 
 }
