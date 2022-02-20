@@ -18,13 +18,6 @@ import {
     IConstantFlowAgreementV1
 } from "@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol";
 
-// interface IStreamer is Ownable {
-//     function deposit() public payable;        
-//     function withdraw() public;
-//     function closeStream(address sender, address receiver, address token) public;
-//     function editStream(address receiver, address _token, int96 flowRate) public;
-//     function getStreamerETA() external view returns(uint256);
-// }
 
 
 contract Streamer {
@@ -33,7 +26,10 @@ contract Streamer {
     int96 public flowRate; // Flow rate in wei per second
     ISuperToken public token; // Address of the ERC20-compliant token
     address public receiver;  // Address of the receiver
-    address public owner;
+    bool public active;
+    string public name;
+
+    address owner;
 
     modifier onlyOwner {
         require(msg.sender == owner);
@@ -46,7 +42,7 @@ contract Streamer {
     //initialize cfaV1 variable
     CFAv1Library.InitData public cfaV1;
     
-    constructor(ISuperfluid host, address _receiver, address _token, address _owner) {
+    constructor(ISuperfluid host, address _receiver, address _token, address _owner, int96 _flowRate, string memory _name) {
 
         //initialize InitData struct, and set equal to cfaV1
         cfaV1 = CFAv1Library.InitData(
@@ -62,33 +58,45 @@ contract Streamer {
         receiver = _receiver;
         token = ISuperToken(_token);
         owner = _owner;
-
+        flowRate = _flowRate;
+        name = _name;
+        active = false;
     }
 
-    function editStream (address _receiver, address _token, int96 _flowRate) public onlyOwner {
-        withdraw(token.balanceOf(address(this)));
-
+    function editStream(address _receiver, int96 _flowRate) public onlyOwner {    
         receiver = _receiver;
-        token = ISuperToken(_token);
         flowRate = _flowRate;
         cfaV1.updateFlow(receiver, token, flowRate);
     }
 
+
+    function openStream() public onlyOwner {
+        require(active == false, "a stream is already open");
+        active = true;
+        require(token.balanceOf(address(this)) >= uint96(flowRate), "Not enough balance deposited.");
+        cfaV1.createFlow(receiver, token, flowRate);
+    }
+
     function closeStream() public onlyOwner {
+        require(active == true, "the stream is not open");
         cfaV1.deleteFlow(msg.sender, receiver, token);
         withdraw(token.balanceOf(address(this)));
+        active = false;
+    }
+
+     function pauseStream() public onlyOwner {
+        require(active == true);
+        active = false;
+        cfaV1.deleteFlow(msg.sender, receiver, token);
     }
 
     function getStreamerETA() external view returns(uint256) {
         return token.balanceOf(address(this)) / uint96(flowRate);
     }
     
-    function deposit(uint256 _amount, int96 _flowRate) public onlyOwner {
-        token.approve(address(this), _amount);
+    function deposit(uint256 _amount) public onlyOwner {
         bool success = token.transferFrom(msg.sender, address(this), _amount);
         require(success, "Token transfer failed.");
-        flowRate = _flowRate;
-        cfaV1.createFlow(receiver, token, flowRate);
     }
 
     function withdraw(uint256 _amount) public {
@@ -101,8 +109,11 @@ contract Streamer {
         return token.balanceOf(address(this));
     }
 
-    function getVariables() external view returns(int96 _flowRate, ISuperToken _token, address _receiver, uint256 allowance) {
-        return (flowRate, token, receiver, token.allowance(msg.sender, address(this)));
+    function getStreamData() external view returns(int96 _flowRate, ISuperToken _token, address _receiver, bool _active, string memory _name, uint256 _balance, uint256 _eta) {
+        return (flowRate, token, receiver, active, name, this.getBalance(), this.getStreamerETA());
     }
 
+    function setName(string calldata _name) public {
+        name = _name;
+    }
 }

@@ -19,7 +19,7 @@
 .DS_Store
 *.pem
 
-/src/artifacts/
+# /src/artifacts/
 
 # debug
 npm-debug.log*

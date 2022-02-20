@@ -16,7 +16,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@abi/*": ["src/artifacts/contracts/*"]
+      "@abi/*": ["src/artifacts/contracts/*"],
+      "@components/*": ["src/components/*"],
+      "@services": ["src/services"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

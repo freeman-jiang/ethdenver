@@ -345,6 +345,13 @@
     "@chakra-ui/react-utils" "1.2.2"
     "@chakra-ui/utils" "1.10.2"
 
+"@chakra-ui/pro-theme@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/pro-theme/-/pro-theme-0.0.26.tgz#0e91879bb7a6b81e69db8106499059b21ae8844c"
+  integrity sha512-zRYK0K+V0NTYbQ3pB2davetr9pl4mhPR8zAn8YHtAVX95WoOgUQpPGe71gMwFb3ZVCZ3YM3b0aTJJd8abAlhBw==
+  dependencies:
+    "@chakra-ui/theme-tools" "1.3.4"
+
 "@chakra-ui/progress@1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@chakra-ui/progress/-/progress-1.2.4.tgz#6fe3b4e25113afc5d223196663945ccff3aa4477"
@@ -1288,6 +1295,11 @@
     "@ethersproject/logger" "^5.5.0"
     "@ethersproject/properties" "^5.5.0"
     "@ethersproject/strings" "^5.5.0"
+
+"@fontsource/dm-sans@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/dm-sans/-/dm-sans-4.5.1.tgz#6abe7004d6aeb47be39905b1cdd0612a34c845fb"
+  integrity sha512-+YNxB6wrsaMRkcNTSeOg3sdh5YSTr++cEH0cDSGjrlP2hRh+VZcxSPCWCYJl7FBjhEOrKNAsKVqkgv6msXGrUQ==
 
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.3"
@@ -8325,6 +8337,11 @@ react-focus-lock@2.5.2:
     use-callback-ref "^1.2.5"
     use-sidecar "^1.0.5"
 
+react-icons@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
+  integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
+
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -9555,6 +9572,11 @@ trim-right@^1.0.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/true-case-path/-/true-case-path-2.2.1.tgz#c5bf04a5bbec3fd118be4084461b3a27c4d796bf"
   integrity sha512-0z3j8R7MCjy10kc/g+qg7Ln3alJTodw9aDuVWZa3uiWqfuBMKeAeP2ocWcxoyM3D73yz3Jt/Pu4qPr4wHSdB/Q==
+
+truncate-eth-address@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/truncate-eth-address/-/truncate-eth-address-1.0.2.tgz#b8e008215d09d2e3ab28fff27b69addddc989048"
+  integrity sha512-MLGSzEIDam9XdBQejtCpQfdbgXfYTEkQseqpz+Pcqu6SEvvVC4mYniWFp4n8VG+KOi6jYVtUfA6cqWecSvS3rw==
 
 ts-essentials@^1.0.0:
   version "1.0.4"

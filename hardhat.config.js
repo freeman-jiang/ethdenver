@@ -10,14 +10,12 @@ module.exports = {
   paths: {
     artifacts: "./src/artifacts",
   },
-  defaultNetwork: "matic",
+  // defaultNetwork: "matic",
   networks: {
     hardhat: {},
-    matic: {
+    mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
       accounts: [`0x${process.env.ACCOUNT_KEY}`],
-      gas: 2100000,
-      gasPrice: 8000000000,
     },
     ropsten: {
       url: process.env.ROPSTEN_RPC,
@@ -27,6 +25,6 @@ module.exports = {
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: "your key here"
-  }
+    apiKey: process.env.ETHERSCAN_API_KEY,
+  },
 };
