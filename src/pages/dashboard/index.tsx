@@ -424,7 +424,7 @@ const Dashboard = () => {
                     }}
                     mt="0.75rem" colorScheme={"teal"}
                   >
-                    Approve
+                    1. Approve MATICx
                   </Button>
 
                   <Button
@@ -433,7 +433,7 @@ const Dashboard = () => {
                       stream.deposit(depositAmount);
                     }}
                   >
-                    Deposit
+                    2. Deposit MATICx
                   </Button>
 
                   <Button
@@ -442,7 +442,7 @@ const Dashboard = () => {
                       stream.openStream();
                     }}
                   >
-                    Open Stream
+                    3. Open Stream
                   </Button>
 
                   <Button
