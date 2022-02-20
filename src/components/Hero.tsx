@@ -74,14 +74,14 @@ export const Hero = () => {
             </Button>
             <Button
               as="a"
-              href="#"
+              href="/debug"
               size="lg"
               colorScheme="gray"
               px="8"
               fontWeight="bold"
               fontSize="md"
             >
-              Watch demo
+              Dev mode
             </Button>
           </Stack>
         </Box>
