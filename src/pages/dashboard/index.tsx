@@ -302,7 +302,7 @@ const Dashboard = () => {
                         </GridItem>
                         <GridItem>Balance:</GridItem>
                         <GridItem>
-                          <Code>{currentStreamData ? (BigNumber.from(currentStreamData[5]).toNumber()/1000000000000000000).toFixed(6) : ' '}</Code>
+                          <Code>{currentStreamData ? (BigNumber.from(currentStreamData[5]).div(1000000000000000000)).toNumber().toFixed(6) : ' '}</Code>
                         </GridItem>
                         <GridItem>Flow rate:</GridItem>
                         <GridItem>
