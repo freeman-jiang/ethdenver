@@ -95,6 +95,7 @@ contract Streamer {
     }
     
     function deposit(uint256 _amount) public onlyOwner {
+
         bool success = token.transferFrom(msg.sender, address(this), _amount);
         require(success, "Token transfer failed.");
     }

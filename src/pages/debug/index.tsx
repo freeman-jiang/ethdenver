@@ -23,6 +23,7 @@ import {
   getStreamData,
   deactivateController,
   createNewStream,
+  approveToken,
 } from "@services";
 import {
   SUPERFLUID_HOST_ADDRESS,
@@ -202,10 +203,40 @@ const Debug = () => {
 
                   <Button
                     onClick={() => {
+                      if (depositAmount !== undefined && depositAmount > 0) {
+                        approveToken(
+                          depositAmount!,
+                          TOKEN_CONTRACT_ADDRESS.MATICx,
+                          stream.address
+                        );
+                      }
+                    }}
+                  >
+                    Approve
+                  </Button>
+
+                  <Button
+                    onClick={() => {
                       stream.deposit(depositAmount);
                     }}
                   >
                     Deposit
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      stream.openStream();
+                    }}
+                  >
+                    Open Stream
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      stream.withdraw(streamData[4]);
+                    }}
+                  >
+                    Withdraw Stream
                   </Button>
                 </Flex>
               )}

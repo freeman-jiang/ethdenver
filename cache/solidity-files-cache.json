@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/freeman/Development/Web3/ethdenver/contracts/Controller.sol": {
-      "lastModificationDate": 1645342561725,
-      "contentHash": "cd196ed4ebdf6b34ec5e5c33d866cfdd",
+      "lastModificationDate": 1645358693123,
+      "contentHash": "0e0ec51e9f125005fefd23848bc871b0",
       "sourceName": "contracts/Controller.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -40,8 +40,8 @@
       ]
     },
     "/Users/freeman/Development/Web3/ethdenver/contracts/Streamer.sol": {
-      "lastModificationDate": 1645352742547,
-      "contentHash": "51708194902a1084c1495d6f14975580",
+      "lastModificationDate": 1645357809436,
+      "contentHash": "af0a2285532b9ecd57712b6136ca359d",
       "sourceName": "contracts/Streamer.sol",
       "solcConfig": {
         "version": "0.8.0",

@@ -377,7 +377,7 @@ const Dashboard = () => {
               Change flow rate
             </Button>
             <Button colorScheme="teal" mt="0.75rem">
-              Change flow rate
+              Change token
             </Button>
           </Card>
         </GridItem>

@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Link, Text } from "@chakra-ui/react";
 import truncateEthAddress from "truncate-eth-address";
 
 interface Props {
@@ -27,9 +27,18 @@ export const NavBar = ({ userAddress }: Props) => {
           <Text>{truncateEthAddress(userAddress)}</Text>
         </Box>
 
-        <Heading fontSize={"5xl"} display={{ base: "none", md: "block" }}>
-          SuperX
-        </Heading>
+        <Link href="/" style={{ textDecoration: "none" }}>
+          <Heading
+            fontSize={"5xl"}
+            display={{ base: "none", md: "block" }}
+            _hover={{
+              color: "green.400",
+              transition: "all 0.2s",
+            }}
+          >
+            SuperX
+          </Heading>
+        </Link>
 
         <Box
           display={{ base: "block", md: "none" }}
