@@ -85,8 +85,6 @@ const Dashboard = () => {
   const [stream, setStream] = useState<ethers.Contract>();
   const [depositAmount, setDeposit] = useState(0);
 
-  console.log("laod");
-
   const toast = useToast();
 
   const Step0 = () => (
@@ -146,8 +144,6 @@ const Dashboard = () => {
               onClose();
               setStep(2);
             } catch (err) {
-              console.log("im here");
-
               console.error(err);
               toast({
                 title: "Something went wrong!",
@@ -274,7 +270,6 @@ const Dashboard = () => {
                   // </Button>
 
                   <InfoButton
-                    my={"0.2rem"}
                     key={index}
                     address={address}
                     onClick={async () => {
@@ -334,15 +329,14 @@ const Dashboard = () => {
               mt="1rem"
               colorScheme={"green"}
               onClick={() => {
-                console.log(recipientAddress);
                 createNewStream(
                   recipientAddress,
                   parseFloat(flowRate),
                   streamName,
-                  controller,
+                  controller!,
                   setStream
                 ).then(() => {
-                  controller
+                  controller!
                     .getAllStreamers()
                     .then((list: string[]) => console.log(list));
                 });
@@ -430,7 +424,7 @@ const Dashboard = () => {
                 mt="0.75rem"
                 colorScheme={"red"}
                 onClick={() => {
-                  stream.withdraw(streamData![4]);
+                  stream.withdraw(streamData!._balance);
                 }}
               >
                 Withdraw All Funds

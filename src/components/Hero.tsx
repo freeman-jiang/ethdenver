@@ -1,20 +1,5 @@
-import {
-  Box,
-  Button,
-  Circle,
-  Container,
-  Flex,
-  Heading,
-  Img,
-  LightMode,
-  SimpleGrid,
-  Stack,
-  Text,
-  useColorModeValue as mode,
-  VisuallyHidden,
-} from "@chakra-ui/react";
+import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
 import * as React from "react";
-import { FaPlay } from "react-icons/fa";
 import { Footer } from "./Footer";
 
 export const Hero = () => {
@@ -49,8 +34,8 @@ export const Hero = () => {
               payments.
             </Heading>
             <Text fontSize="xl" mt="4" maxW="xl" mx="auto">
-              Have piece of mind knowing your streams are sandboxed in dedicated
-              burner wallets.
+              Have piece of mind knowing your streams are sandboxed and isolated
+              in dedicated environments.
             </Text>
           </Box>
 

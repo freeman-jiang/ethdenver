@@ -30,7 +30,6 @@ import { BigNumber, ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import truncateEthAddress from "truncate-eth-address";
 import { getStreamData, getStreamerContract } from "@services";
-import { Card } from "./Card";
 import { ADDRESS_RESOLVER } from "src/constants/mumbai";
 
 interface Props {
@@ -122,6 +121,7 @@ export const InfoButton = ({ address, onClick }: Props) => {
                   </GridItem>
                   <GridItem>Supertoken: </GridItem>
                   <GridItem>
+                    {/* @ts-ignore*/}
                     <Code>{ADDRESS_RESOLVER[streamData._token]}</Code>
                   </GridItem>
                   <GridItem>Recipient address:</GridItem>
@@ -153,11 +153,11 @@ export const InfoButton = ({ address, onClick }: Props) => {
                   </GridItem>
                 </Grid>
 
-                <Divider my="1rem" />
+                {/* <Divider my="1rem" />
                 <Text fontWeight="medium" fontSize="xl" mb="1rem">
                   Initialize Stream
-                </Text>
-                <VStack w="100%">
+                </Text> */}
+                {/* <VStack w="100%">
                   <Input
                     placeholder="Deposit Amount"
                     // value={depositAmount}
@@ -178,8 +178,8 @@ export const InfoButton = ({ address, onClick }: Props) => {
                       <NumberDecrementStepper />
                     </NumberInputStepper>
                   </NumberInput>
-                </VStack>
-                <Button
+                </VStack> */}
+                {/* <Button
                   onClick={() => {
                     // if (depositAmount !== undefined && depositAmount > 0) {
                     //   approveToken(
@@ -233,7 +233,7 @@ export const InfoButton = ({ address, onClick }: Props) => {
                   }}
                 >
                   Withdraw All Funds
-                </Button>
+                </Button> */}
               </ModalBody>
               <ModalFooter>
                 <Button onClick={onClose}>Close</Button>
