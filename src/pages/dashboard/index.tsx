@@ -30,18 +30,21 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { NavBar } from "@components/NavBar";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { useEffect, useState } from "react";
 import {
+  approveToken,
   createNewStream,
   deactivateController,
   deployNewController,
   getControllerAddress,
   getControllerContract,
+  getStreamerContract,
 } from "@services";
 import { Card } from "@components/Card";
 import { FaChevronDown } from "react-icons/fa";
 import truncateEthAddress from "truncate-eth-address";
+import { TOKEN_CONTRACT_ADDRESS } from "src/constants/mumbai";
 
 interface MetaMaskWindow extends Window {
   ethereum: any;
@@ -53,6 +56,7 @@ const Dashboard = () => {
     <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(8px)" />
   );
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isStreamOpen, onStreamOpen, onStreamClose } = useDisclosure()
   const [isLoading, setIsLoading] = useState(false);
   const [userAddress, setUserAddress] = useState(
     "0x6D04df042bd59a027e1025771629E6Fd512f5b39"
@@ -65,6 +69,13 @@ const Dashboard = () => {
   const [streamName, setStreamName] = useState("");
   const [recipientAddress, setRecipientAddress] = useState("");
   const [flowRate, setFlowRate] = useState("");
+
+  const [streamers, setStreamers] = useState();
+  const [currentStream, setCurrentStream] = useState();
+  const [currentStreamData, setStreamData] = useState();
+  const [stream, setStream] = useState<ethers.Contract>();
+  const [depositAmount, setDeposit] = useState();
+
 
   const toast = useToast();
 
@@ -105,6 +116,8 @@ const Dashboard = () => {
       <ModalFooter></ModalFooter>
     </Box>
   );
+
+
 
   const Step1 = () => (
     <Box>
@@ -164,6 +177,8 @@ const Dashboard = () => {
 
       if (address !== "0x0000000000000000000000000000000000000000") {
         setController(await getControllerContract());
+        const controller2 = await getControllerContract();
+        setStreamers(await controller2.getAllStreamers());
         setStep(2);
         onClose();
       } else {
@@ -185,6 +200,7 @@ const Dashboard = () => {
   useEffect(() => {
     onOpen();
   }, []);
+
 
   const getModalContent = () => {
     switch (step) {
@@ -230,84 +246,78 @@ const Dashboard = () => {
             <Heading alignSelf="center" fontSize="3xl">
               View streams
             </Heading>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rightIcon={<FaChevronDown />}
-                colorScheme="telegram"
-              >
-                See stream
-              </MenuButton>
-              <MenuList w="100%">
-                <MenuItem>
-                  Subscriptions:{" "}
-                  {truncateEthAddress(
-                    "0x32524cd53fACEc0F30a5850cB08E09642fa71D13"
-                  )}
-                </MenuItem>
-                <MenuItem>
-                  Mortgage:{" "}
-                  {truncateEthAddress(
-                    "0x6AaD0A9E3f26c2a7B735E4B0FBa614083a4911f4"
-                  )}
-                </MenuItem>
-                <MenuItem>
-                  Payroll:{" "}
-                  {truncateEthAddress(
-                    "0xd2f6A520D053A4daC9966b6437Fa863112F4c43a"
-                  )}
-                </MenuItem>
-              </MenuList>
-            </Menu>
-            <Text mt="1.5rem" fontWeight="medium" fontSize="xl">
-              Stream information
-            </Text>
-            <Alert my="0.5rem" status="warning" rounded="md">
-              <AlertIcon />
-              <Text fontSize={"sm"}>
-                Your balance is running out! Top up or close the stream to avoid
-                losing your{" "}
-                <Link
-                  isExternal
-                  href="https://docs.superfluid.finance/superfluid/sentinels/liquidations-and-toga"
-                  fontWeight={"bold"}
-                >
-                  security deposit.
-                </Link>
-              </Text>
-            </Alert>
-            <Grid mt="0.2rem" templateColumns={"1fr 1fr"} templateRows="5">
-              <GridItem>Name:</GridItem>
-              <GridItem>
-                <Code>Payroll</Code>
-              </GridItem>
-              <GridItem>Token</GridItem>
-              <GridItem>
-                <Code>MATICx</Code>
-              </GridItem>
-              <GridItem>Recipient:</GridItem>
-              <GridItem>
-                <Code>
-                  {truncateEthAddress(
-                    "0xed2f6A520D053B4caC9966b6437Fa863112F4o23e"
-                  )}
-                </Code>
-              </GridItem>
-              <GridItem>Balance:</GridItem>
-              <GridItem>
-                <Code>15.38042 MATIC</Code>
-              </GridItem>
-              <GridItem>Flow rate:</GridItem>
-              <GridItem>
-                <Code>3 MATIC per day</Code>
-              </GridItem>
-              <GridItem>Estimated time:</GridItem>
-              <GridItem>
-                <Code>5 days, 3 hrs</Code>
-              </GridItem>
-            </Grid>
-
-            <Button mt="1rem">Edit Stream</Button>
+                    {streamers && streamers.map((address, index) => {
+                      return (
+                        <Button
+                          key={index}
+                          onClick={() => {
+                            getStreamerContract(address).then(async (contract) => {
+                              setCurrentStream(contract)
+                              const streamData = await contract.getStreamData()
+                              setStreamData(streamData)
+                              }
+                            );
+                          }}
+                        >
+                          {address}
+                        </Button>
+                      );
+                    })}
+                    {
+                      currentStream !== undefined ?
+                      <>
+                      <Text mt="1.5rem" fontWeight="medium" fontSize="xl">
+                        Stream information
+                      </Text>
+                      <Alert my="0.5rem" status="warning" rounded="md">
+                        <AlertIcon />
+                        <Text fontSize={"sm"}>
+                          Your balance is running out! Top up or close the stream to avoid
+                          losing your{" "}
+                          <Link
+                            isExternal
+                            href="https://docs.superfluid.finance/superfluid/sentinels/liquidations-and-toga"
+                            fontWeight={"bold"}
+                          >
+                            security deposit.
+                          </Link>
+                        </Text>
+                      </Alert>
+                      <Grid mt="0.2rem" templateColumns={"1fr 1fr"} templateRows="5">
+                        <GridItem>Name:</GridItem>
+                        <GridItem>
+                          <Code>{currentStreamData ? currentStreamData[4] : ' '}</Code>
+                        </GridItem>
+                        <GridItem>Token</GridItem>
+                        <GridItem>
+                          <Code>MATICx</Code>
+                        </GridItem>
+                        <GridItem>Recipient:</GridItem>
+                        <GridItem>
+                          <Code>
+                            {currentStreamData ? truncateEthAddress(
+                              currentStreamData[2]
+                            ) : ' '}
+                          </Code>
+                        </GridItem>
+                        <GridItem>Balance:</GridItem>
+                        <GridItem>
+                          <Code>{currentStreamData ? (BigNumber.from(currentStreamData[5]).toNumber()/1000000000000000000).toFixed(6) : ' '}</Code>
+                        </GridItem>
+                        <GridItem>Flow rate:</GridItem>
+                        <GridItem>
+                          <Code>3 MATIC per day</Code>
+                        </GridItem>
+                        <GridItem>Estimated time:</GridItem>
+                        <GridItem>
+                          <Code>5 days, 3 hrs</Code>
+                        </GridItem>
+                      </Grid>
+                      <Button mt="1rem">Edit Stream</Button>
+                      </>
+                      : null
+                    }
+            
             <Button
               mt="0.75rem"
               colorScheme={"red"}
@@ -357,13 +367,18 @@ const Dashboard = () => {
               mt="1rem"
               colorScheme={"green"}
               onClick={() => {
-                // createNewStream(
-                //   recipientAddress,
-                //   flowRate,
-                //   streamName,
-                //   controllerContract!,
-                //   setStream
-                // );
+                console.log(recipientAddress)
+                createNewStream(
+                  recipientAddress,
+                  parseFloat(flowRate),
+                  streamName,
+                  controller,
+                  setStream
+                ).then(() => {
+                  controller
+                    .getAllStreamers()
+                    .then((list: string[]) => console.log(list));
+                });
               }}
             >
               Create stream
@@ -381,6 +396,78 @@ const Dashboard = () => {
             </Button>
           </Card>
         </GridItem>
+
+          { stream ? <GridItem>
+          <Card mx="auto" p={"2rem"} h="37rem">
+            <Heading alignSelf="center" fontSize="3xl">
+              {truncateEthAddress(stream.address)}
+            </Heading>
+            <Text fontWeight="medium" fontSize="xl" mb="1rem">
+              Deposit
+            </Text>
+            <VStack w="100%">
+              <Input
+                placeholder="Deposit Amount"
+                value={depositAmount}
+                onChange={(e) => setDeposit(parseFloat(e.target.value))}
+              />
+            </VStack>
+            <Button
+                    onClick={() => {
+                      if (depositAmount !== undefined && depositAmount > 0) {
+                        approveToken(
+                          depositAmount!,
+                          TOKEN_CONTRACT_ADDRESS.MATICx,
+                          stream.address
+                        );
+                      }
+                    }}
+                    mt="0.75rem" colorScheme={"teal"}
+                  >
+                    Approve
+                  </Button>
+
+                  <Button
+                    mt="0.75rem" colorScheme={"teal"}
+                    onClick={() => {
+                      stream.deposit(depositAmount);
+                    }}
+                  >
+                    Deposit
+                  </Button>
+
+                  <Button
+                    mt="0.75rem" colorScheme={"teal"}
+                    onClick={() => {
+                      stream.openStream();
+                    }}
+                  >
+                    Open Stream
+                  </Button>
+
+                  <Button
+                    mt="0.75rem" colorScheme={"red"}
+                    onClick={() => {
+                      stream.closeStream();
+                    }}
+                  >
+                    Close Stream
+                  </Button>
+
+                  <Button
+                    mt="0.75rem" colorScheme={"red"}
+                    onClick={() => {
+                      stream.withdraw(streamData[4]);
+                    }}
+                  >
+                    Withdraw All Funds
+                  </Button>
+        
+          </Card>
+        </GridItem>
+        : null  
+      }
+        
       </Grid>
     </>
   );
