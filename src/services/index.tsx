@@ -103,7 +103,7 @@ export const getStreamData = async (streamer: ethers.Contract) => {
   const signer = await getSigner();
   try {
     const data = await streamer.getStreamData();
-    // console.log(data);
+    console.log(data);
     return data;
   } catch (e) {
     console.error(e);

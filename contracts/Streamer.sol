@@ -28,7 +28,7 @@ contract Streamer {
     address public receiver;  // Address of the receiver
     bool public active;
     string public name;
-
+    mapping(address => uint256) public balances;
     address owner;
 
     modifier onlyOwner {
@@ -94,16 +94,18 @@ contract Streamer {
         return token.balanceOf(address(this)) / uint96(flowRate);
     }
     
-    function deposit(uint256 _amount) public onlyOwner {
-
+    function deposit(uint256 _amount) public {
         bool success = token.transferFrom(msg.sender, address(this), _amount);
         require(success, "Token transfer failed.");
+        balances[msg.sender] += _amount;
     }
 
     function withdraw(uint256 _amount) public {
         require(token.balanceOf(address(this)) >= _amount, "Insufficient funds.");
+        require(_amount <= balances[msg.sender]);
         bool success = token.transfer(msg.sender, _amount);
         require(success, "Token transfer failed.");
+        balances[msg.sender] -= _amount;
     }
 
     function getBalance() external view returns(uint256 balance) {
@@ -114,7 +116,7 @@ contract Streamer {
         return (flowRate, token, receiver, active, name, this.getBalance(), this.getStreamerETA());
     }
 
-    function setName(string calldata _name) public {
+    function setName(string calldata _name) public onlyOwner {
         name = _name;
     }
 }

@@ -45,18 +45,28 @@ import { Card } from "@components/Card";
 import { FaChevronDown } from "react-icons/fa";
 import truncateEthAddress from "truncate-eth-address";
 import { TOKEN_CONTRACT_ADDRESS } from "src/constants/mumbai";
+import { InfoButton } from "@components/InfoButton";
 
 interface MetaMaskWindow extends Window {
   ethereum: any;
 }
 declare var window: MetaMaskWindow;
 
+interface StreamData {
+  _active: boolean;
+  _balance: ethers.BigNumber;
+  _eta: ethers.BigNumber;
+  _flowRate: ethers.BigNumber;
+  _name: string;
+  _receiver: string;
+  _token: string;
+}
+
 const Dashboard = () => {
   const Overlay = () => (
     <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(8px)" />
   );
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isStreamOpen, onStreamOpen, onStreamClose } = useDisclosure()
   const [isLoading, setIsLoading] = useState(false);
   const [userAddress, setUserAddress] = useState(
     "0x6D04df042bd59a027e1025771629E6Fd512f5b39"
@@ -64,18 +74,18 @@ const Dashboard = () => {
 
   const [network, setNetwork] = useState({} as any);
   const [step, setStep] = useState(0);
-  const [controller, setController] = useState({} as ethers.Contract);
+  const [controller, setController] = useState<ethers.Contract>();
 
   const [streamName, setStreamName] = useState("");
   const [recipientAddress, setRecipientAddress] = useState("");
   const [flowRate, setFlowRate] = useState("");
 
-  const [streamers, setStreamers] = useState();
-  const [currentStream, setCurrentStream] = useState();
-  const [currentStreamData, setStreamData] = useState();
+  const [streamers, setStreamers] = useState<string[]>();
+  const [streamData, setStreamData] = useState<StreamData>();
   const [stream, setStream] = useState<ethers.Contract>();
-  const [depositAmount, setDeposit] = useState();
+  const [depositAmount, setDeposit] = useState(0);
 
+  console.log("laod");
 
   const toast = useToast();
 
@@ -116,8 +126,6 @@ const Dashboard = () => {
       <ModalFooter></ModalFooter>
     </Box>
   );
-
-
 
   const Step1 = () => (
     <Box>
@@ -201,6 +209,13 @@ const Dashboard = () => {
     onOpen();
   }, []);
 
+  useEffect(() => {
+    if (controller) {
+      controller
+        .getAllStreamers()
+        .then((streamers: string[]) => setStreamers(streamers));
+    }
+  }, [stream, controller]);
 
   const getModalContent = () => {
     switch (step) {
@@ -208,10 +223,6 @@ const Dashboard = () => {
         return <Step0 />;
       case 1:
         return <Step1 />;
-      case 2:
-        return <Step0 />;
-      case 3:
-        return <Step0 />;
       default:
         return <Step0 />;
     }
@@ -238,7 +249,7 @@ const Dashboard = () => {
         templateColumns={{ base: "1", md: "repeat(2, 1fr)" }}
         templateRows="1"
         columnGap="2rem"
-        mx={{ base: "2vw", lg: "12rem" }}
+        mx={{ base: "2vw", md: "5vw", xl: "12rem" }}
         mb={{ base: "5rem", md: "0" }}
       >
         <GridItem>
@@ -246,78 +257,34 @@ const Dashboard = () => {
             <Heading alignSelf="center" fontSize="3xl">
               View streams
             </Heading>
-                    {streamers && streamers.map((address, index) => {
-                      return (
-                        <Button
-                          key={index}
-                          onClick={() => {
-                            getStreamerContract(address).then(async (contract) => {
-                              setCurrentStream(contract)
-                              const streamData = await contract.getStreamData()
-                              setStreamData(streamData)
-                              }
-                            );
-                          }}
-                        >
-                          {address}
-                        </Button>
-                      );
-                    })}
-                    {
-                      currentStream !== undefined ?
-                      <>
-                      <Text mt="1.5rem" fontWeight="medium" fontSize="xl">
-                        Stream information
-                      </Text>
-                      <Alert my="0.5rem" status="warning" rounded="md">
-                        <AlertIcon />
-                        <Text fontSize={"sm"}>
-                          Your balance is running out! Top up or close the stream to avoid
-                          losing your{" "}
-                          <Link
-                            isExternal
-                            href="https://docs.superfluid.finance/superfluid/sentinels/liquidations-and-toga"
-                            fontWeight={"bold"}
-                          >
-                            security deposit.
-                          </Link>
-                        </Text>
-                      </Alert>
-                      <Grid mt="0.2rem" templateColumns={"1fr 1fr"} templateRows="5">
-                        <GridItem>Name:</GridItem>
-                        <GridItem>
-                          <Code>{currentStreamData ? currentStreamData[4] : ' '}</Code>
-                        </GridItem>
-                        <GridItem>Token</GridItem>
-                        <GridItem>
-                          <Code>MATICx</Code>
-                        </GridItem>
-                        <GridItem>Recipient:</GridItem>
-                        <GridItem>
-                          <Code>
-                            {currentStreamData ? truncateEthAddress(
-                              currentStreamData[2]
-                            ) : ' '}
-                          </Code>
-                        </GridItem>
-                        <GridItem>Balance:</GridItem>
-                        <GridItem>
-                          <Code>{currentStreamData ? (BigNumber.from(currentStreamData[5]).div(1000000000000000000)).toNumber().toFixed(6) : ' '}</Code>
-                        </GridItem>
-                        <GridItem>Flow rate:</GridItem>
-                        <GridItem>
-                          <Code>3 MATIC per day</Code>
-                        </GridItem>
-                        <GridItem>Estimated time:</GridItem>
-                        <GridItem>
-                          <Code>5 days, 3 hrs</Code>
-                        </GridItem>
-                      </Grid>
-                      <Button mt="1rem">Edit Stream</Button>
-                      </>
-                      : null
-                    }
-            
+            {streamers &&
+              streamers.map((address: string, index: number) => {
+                return (
+                  // <Button
+                  //   key={index}
+                  //   onClick={async () => {
+                  //     const contract = await getStreamerContract(address);
+                  //     setStream(contract);
+                  //     setStreamData(await contract.getStreamData());
+                  //   }}
+                  // >
+                  //   <Code bg="transparent">
+                  //     {streamerDisplayAddress!(address)}
+                  //   </Code>
+                  // </Button>
+
+                  <InfoButton
+                    my={"0.2rem"}
+                    key={index}
+                    address={address}
+                    onClick={async () => {
+                      const contract = await getStreamerContract(address);
+                      setStream(contract);
+                      setStreamData(await contract.getStreamData());
+                    }}
+                  />
+                );
+              })}
             <Button
               mt="0.75rem"
               colorScheme={"red"}
@@ -367,7 +334,7 @@ const Dashboard = () => {
               mt="1rem"
               colorScheme={"green"}
               onClick={() => {
-                console.log(recipientAddress)
+                console.log(recipientAddress);
                 createNewStream(
                   recipientAddress,
                   parseFloat(flowRate),
@@ -397,77 +364,80 @@ const Dashboard = () => {
           </Card>
         </GridItem>
 
-          { stream ? <GridItem>
-          <Card mx="auto" p={"2rem"} h="37rem">
-            <Heading alignSelf="center" fontSize="3xl">
-              {truncateEthAddress(stream.address)}
-            </Heading>
-            <Text fontWeight="medium" fontSize="xl" mb="1rem">
-              Deposit
-            </Text>
-            <VStack w="100%">
-              <Input
-                placeholder="Deposit Amount"
-                value={depositAmount}
-                onChange={(e) => setDeposit(parseFloat(e.target.value))}
-              />
-            </VStack>
-            <Button
-                    onClick={() => {
-                      if (depositAmount !== undefined && depositAmount > 0) {
-                        approveToken(
-                          depositAmount!,
-                          TOKEN_CONTRACT_ADDRESS.MATICx,
-                          stream.address
-                        );
-                      }
-                    }}
-                    mt="0.75rem" colorScheme={"teal"}
-                  >
-                    1. Approve MATICx
-                  </Button>
+        {stream ? (
+          <GridItem>
+            <Card mx="auto" p={"2rem"} h="37rem">
+              <Heading alignSelf="center" fontSize="3xl">
+                {truncateEthAddress(stream.address)}
+              </Heading>
+              <Text fontWeight="medium" fontSize="xl" mb="1rem">
+                Deposit
+              </Text>
+              <VStack w="100%">
+                <Input
+                  placeholder="Deposit Amount"
+                  value={depositAmount}
+                  onChange={(e) => setDeposit(parseFloat(e.target.value))}
+                />
+              </VStack>
+              <Button
+                onClick={() => {
+                  if (depositAmount !== undefined && depositAmount > 0) {
+                    approveToken(
+                      depositAmount!,
+                      TOKEN_CONTRACT_ADDRESS.MATICx,
+                      stream.address
+                    );
+                  }
+                }}
+                mt="0.75rem"
+                colorScheme={"teal"}
+              >
+                1. Approve MATICx
+              </Button>
 
-                  <Button
-                    mt="0.75rem" colorScheme={"teal"}
-                    onClick={() => {
-                      stream.deposit(depositAmount);
-                    }}
-                  >
-                    2. Deposit MATICx
-                  </Button>
+              <Button
+                mt="0.75rem"
+                colorScheme={"teal"}
+                onClick={() => {
+                  stream.deposit(depositAmount);
+                }}
+              >
+                2. Deposit MATICx
+              </Button>
 
-                  <Button
-                    mt="0.75rem" colorScheme={"teal"}
-                    onClick={() => {
-                      stream.openStream();
-                    }}
-                  >
-                    3. Open Stream
-                  </Button>
+              <Button
+                mt="0.75rem"
+                colorScheme={"teal"}
+                onClick={() => {
+                  stream.openStream();
+                }}
+              >
+                3. Open Stream
+              </Button>
 
-                  <Button
-                    mt="0.75rem" colorScheme={"red"}
-                    onClick={() => {
-                      stream.closeStream();
-                    }}
-                  >
-                    Close Stream
-                  </Button>
+              <Button
+                mt="0.75rem"
+                colorScheme={"red"}
+                onClick={() => {
+                  stream.closeStream();
+                }}
+              >
+                Close Stream
+              </Button>
 
-                  <Button
-                    mt="0.75rem" colorScheme={"red"}
-                    onClick={() => {
-                      stream.withdraw(streamData[4]);
-                    }}
-                  >
-                    Withdraw All Funds
-                  </Button>
-        
-          </Card>
-        </GridItem>
-        : null  
-      }
-        
+              <Button
+                mt="0.75rem"
+                colorScheme={"red"}
+                onClick={() => {
+                  stream.withdraw(streamData![4]);
+                }}
+              >
+                Withdraw All Funds
+              </Button>
+            </Card>
+          </GridItem>
+        ) : null}
       </Grid>
     </>
   );
