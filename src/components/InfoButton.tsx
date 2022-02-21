@@ -122,7 +122,7 @@ export const InfoButton = ({ address, onClick }: Props) => {
                   </GridItem>
                   <GridItem>Supertoken: </GridItem>
                   <GridItem>
-                    <Code>{ADDRESS_RESOLVER.get(streamData._token)}</Code>
+                    <Code>{ADDRESS_RESOLVER[streamData._token]}</Code>
                   </GridItem>
                   <GridItem>Recipient address:</GridItem>
                   <GridItem>
