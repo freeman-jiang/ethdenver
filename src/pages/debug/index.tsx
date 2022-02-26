@@ -12,7 +12,6 @@ import {
   MenuList,
   Stack,
 } from "@chakra-ui/react";
-import BiChevronDown from "react-icons";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import {
@@ -162,9 +161,7 @@ const Debug = () => {
             <>
               <Flex direction={"column"} gap="1rem" mt="1rem">
                 <Menu>
-                  <MenuButton as={Button} rightIcon={BiChevronDown}>
-                    {stream.address}
-                  </MenuButton>
+                  <MenuButton as={Button}>{stream.address}</MenuButton>
                   <MenuList>
                     {streamers.map((address, index) => {
                       return (
