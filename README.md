@@ -11,7 +11,9 @@ SuperX provides a simple UI for creating and managing Superfluid streams in sand
 
 ## Motivation 
 
-[Superfluid](https://www.superfluid.finance/) is a protocol on Ethereum that allows for gasless, recurring crypto payments called streams. The problem is that streams were deliberately designed to continue perpetually. For some applications, this is the intended effect. However, streams won’t stop unless a transaction explicitly tells it to. SuperX allowed users to manage and create streams in isolated environments so that streams would simply go insolvent instead of continuing to drain the rest of a wallet unnoticed.
+[Superfluid](https://www.superfluid.finance/) is a protocol on Ethereum that allows for gasless, recurring crypto payments called streams. The problem is that streams were deliberately designed to continue perpetually. For some applications, this is the intended effect. However, streams won’t stop unless a transaction explicitly tells it to. 
+
+SuperX allowed users to manage and create streams in isolated environments so that streams would simply go insolvent instead of continuing to drain the rest of a wallet unnoticed.
 
 This website is hosted at https://ethdenver-j394edtds-freeman-jiang.vercel.app
 
