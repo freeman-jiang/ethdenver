@@ -14,7 +14,7 @@ Proudly built during ETHDenver 2022.
 
 [Superfluid](https://www.superfluid.finance/) is a protocol on Ethereum that allows for gasless, recurring crypto payments called streams. The problem is that streams were deliberately designed to continue perpetually. For some applications, this is the intended effect. However, streams won’t stop unless a transaction explicitly tells it to. 
 
-SuperX allowed users to manage and create streams in isolated environments so that streams would simply go insolvent instead of continuing to drain the rest of a wallet unnoticed.
+SuperX allowed users to manage and create streams in isolated environments so that streams would simply go insolvent after hitting a limit instead of continuing to drain the rest of a wallet unnoticed.
 
 ## Notes
 
