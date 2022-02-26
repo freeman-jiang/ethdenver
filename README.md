@@ -1,6 +1,8 @@
 # SuperX
 
-SuperX provides a simple UI for creating and managing Superfluid streams in sandboxed, isolated environments. The application is hosted on Vercel [here](https://ethdenver-superx.vercel.app/) and the contract is deployed to the Polygon Mumbai test network. Proudly built during ETHDenver 2022.
+SuperX provides a simple UI for creating and managing Superfluid streams in sandboxed, isolated environments. The application is hosted on Vercel [here](https://ethdenver-superx.vercel.app/) and the contract is deployed to the Polygon Mumbai test network. 
+
+Proudly built during ETHDenver 2022.
 
 ## Screenshots
 <img width="1512" alt="Screen Shot 2022-02-25 at 11 34 23 PM" src="https://user-images.githubusercontent.com/56516912/155829156-80bef162-dd84-4cff-a59d-1d2106db3a19.png">
