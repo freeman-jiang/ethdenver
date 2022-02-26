@@ -15,10 +15,6 @@ SuperX provides a simple UI for creating and managing Superfluid streams in sand
 
 SuperX allowed users to manage and create streams in isolated environments so that streams would simply go insolvent instead of continuing to drain the rest of a wallet unnoticed.
 
-This website is hosted at https://ethdenver-j394edtds-freeman-jiang.vercel.app
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Notes
 
 You will be unable to deploy the contract unless you have exported your private key in a **.env** file.
