@@ -4,7 +4,7 @@ SuperX provides a simple UI for creating and managing Superfluid streams in sand
 
 ## Screenshots
 <img width="1512" alt="Screen Shot 2022-02-25 at 11 34 23 PM" src="https://user-images.githubusercontent.com/56516912/155829156-80bef162-dd84-4cff-a59d-1d2106db3a19.png">
-<img width="1512" alt="Screen Shot 2022-02-25 at 11 34 39 PM" src="https://user-images.githubusercontent.com/56516912/155829157-8cf4dd81-0471-422f-bce9-aba5d3937164.png">
+<img width="1503" alt="Screen Shot 2022-02-25 at 11 38 18 PM" src="https://user-images.githubusercontent.com/56516912/155829255-55a1d390-c459-48a7-ada1-f62129db567d.png">
 <img width="1512" alt="Screen Shot 2022-02-25 at 11 34 55 PM" src="https://user-images.githubusercontent.com/56516912/155829159-16ba074b-0a12-4c66-a939-757aec8c53d2.png">
 <img width="1512" alt="Screen Shot 2022-02-25 at 11 35 17 PM" src="https://user-images.githubusercontent.com/56516912/155829160-4c7ac67b-afb1-4a24-9ffb-975a79892d43.png">
 <img width="1512" alt="Screen Shot 2022-02-25 at 11 35 39 PM" src="https://user-images.githubusercontent.com/56516912/155829162-3e439514-3688-4937-a1d9-22a13d72a08b.png">
